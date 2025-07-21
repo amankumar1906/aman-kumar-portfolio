@@ -18,14 +18,19 @@ const Hero = () => {
       <div className="container mx-auto px-6 text-center relative z-10">
         <div className="animate-fade-in-up">
           {/* Profile Photo */}
-          <div className="mb-8 flex justify-center">
-            <div className="relative">
-              <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary to-primary-glow shadow-glow animate-glow"></div>
-              <div className="absolute inset-2 rounded-full bg-muted flex items-center justify-center text-4xl font-bold text-primary">
-                AK
-              </div>
+        <div className="mb-8 flex justify-center">
+          <div className="relative">
+            <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary to-primary-glow shadow-glow animate-glow"></div>
+            <div className="absolute inset-2 rounded-full overflow-hidden bg-muted flex items-center justify-center">
+              <img
+                src="/portfolio.jpg"
+                alt="Aman Kumar"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
+        </div>
+
 
           {/* Main heading */}
           <h1 className="text-6xl md:text-7xl font-bold mb-6 animate-slide-in-left">

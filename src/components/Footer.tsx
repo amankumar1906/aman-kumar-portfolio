@@ -45,9 +45,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>© {currentYear} Aman Kumar. Made with</span>
-            <Heart className="h-4 w-4 text-destructive animate-pulse" />
-            <span>and lots of coffee.</span>
+            <span>© {currentYear} Aman Kumar. Made with lots of coffee.</span>
           </div>
 
           {/* Back to top */}
