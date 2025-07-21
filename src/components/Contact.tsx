@@ -6,11 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
+  const { ref, isVisible } = useScrollAnimation();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -69,14 +71,14 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 gradient-hero">
+    <section ref={ref} id="contact" className="py-20 gradient-hero">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-6 scroll-reveal ${isVisible ? 'visible' : ''}`}>
             Let's Connect
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-primary-glow mx-auto mb-8"></div>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <div className={`w-24 h-1 bg-gradient-to-r from-primary to-primary-glow mx-auto mb-8 scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}></div>
+          <p className={`text-xl text-muted-foreground max-w-2xl mx-auto scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.4s' }}>
             I'm always interested in new opportunities and collaborations. 
             Let's discuss how we can work together!
           </p>
@@ -85,7 +87,7 @@ const Contact = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Contact Form */}
-            <Card className="gradient-card shadow-card hover-lift animate-slide-in-left">
+            <Card className={`gradient-card shadow-card hover-lift scroll-reveal-left ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.6s' }}>
               <CardHeader>
                 <CardTitle className="text-2xl font-bold flex items-center gap-2">
                   <Send className="h-6 w-6 text-primary" />
@@ -178,7 +180,7 @@ const Contact = () => {
             </Card>
 
             {/* Social Links */}
-            <div className="space-y-6 animate-slide-in-right">
+            <div className={`space-y-6 scroll-reveal-right ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.6s' }}>
               <Card className="gradient-card shadow-card hover-lift">
                 <CardContent className="p-6">
                   <h3 className="text-xl font-semibold mb-6">Other ways to reach me</h3>

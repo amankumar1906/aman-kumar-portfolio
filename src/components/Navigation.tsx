@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('hero');
@@ -61,7 +62,7 @@ const Navigation = () => {
             Aman Kumar
           </Button>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <Button
                 key={item.id}
@@ -76,10 +77,12 @@ const Navigation = () => {
                 {item.label}
               </Button>
             ))}
+            <ThemeToggle />
           </div>
 
           {/* Mobile menu - simplified for this demo */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
             <Button variant="ghost" size="sm">Menu</Button>
           </div>
         </div>

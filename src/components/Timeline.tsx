@@ -1,8 +1,11 @@
 import { Building, Calendar, MapPin } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Timeline = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   const experiences = [
     {
       company: "Diamond Diagnostics",
@@ -43,13 +46,13 @@ const Timeline = () => {
   ];
 
   return (
-    <section id="timeline" className="py-20 gradient-hero">
+    <section ref={ref} id="timeline" className="py-20 gradient-hero">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-6 scroll-reveal ${isVisible ? 'visible' : ''}`}>
             Professional Timeline
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-primary-glow mx-auto mb-8"></div>
+          <div className={`w-24 h-1 bg-gradient-to-r from-primary to-primary-glow mx-auto mb-8 scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}></div>
         </div>
 
         <div className="max-w-4xl mx-auto">
@@ -70,8 +73,8 @@ const Timeline = () => {
                 {/* Content card */}
                 <div className={`ml-12 md:ml-0 w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
                   <Card 
-                    className={`gradient-card shadow-card hover-lift animate-slide-in-${index % 2 === 0 ? 'right' : 'left'}`}
-                    style={{ animationDelay: `${index * 0.2}s` }}
+                    className={`gradient-card shadow-card hover-lift scroll-reveal-${index % 2 === 0 ? 'right' : 'left'} ${isVisible ? 'visible' : ''}`}
+                    style={{ transitionDelay: `${0.4 + index * 0.2}s` }}
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between">

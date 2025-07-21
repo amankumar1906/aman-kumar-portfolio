@@ -36,7 +36,7 @@ const Hero = () => {
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 animate-slide-in-right max-w-2xl mx-auto">
-            Full Stack & AI Engineer based in Boston
+            Full Stack AI and Software Engineer based in Boston
           </p>
 
           {/* Social links */}

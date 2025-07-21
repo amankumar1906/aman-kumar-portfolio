@@ -1,7 +1,10 @@
 import { Code, Lightbulb, Users, Zap } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const About = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   const features = [
     {
       icon: Lightbulb,
@@ -26,18 +29,18 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-background">
+    <section ref={ref} id="about" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-6 scroll-reveal ${isVisible ? 'visible' : ''}`}>
             About Me
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-primary-glow mx-auto mb-8"></div>
+          <div className={`w-24 h-1 bg-gradient-to-r from-primary to-primary-glow mx-auto mb-8 scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}></div>
         </div>
 
         <div className="max-w-4xl mx-auto">
           {/* Main description */}
-          <Card className="gradient-card shadow-card hover-lift mb-12 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <Card className={`gradient-card shadow-card hover-lift mb-12 scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.4s' }}>
             <CardContent className="p-8">
               <p className="text-lg md:text-xl leading-relaxed text-center">
                 I love building useful things — whether it's AI-powered tools, full-stack web apps, 
@@ -53,8 +56,8 @@ const About = () => {
             {features.map((feature, index) => (
               <Card 
                 key={index} 
-                className="gradient-card shadow-soft hover-lift animate-fade-in-up" 
-                style={{ animationDelay: `${0.4 + index * 0.1}s` }}
+                className={`gradient-card shadow-soft hover-lift scroll-reveal ${isVisible ? 'visible' : ''}`}
+                style={{ transitionDelay: `${0.6 + index * 0.2}s` }}
               >
                 <CardContent className="p-6 text-center">
                   <div className="mb-4 flex justify-center">

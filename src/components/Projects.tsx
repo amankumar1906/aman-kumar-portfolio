@@ -1,9 +1,12 @@
-import { ExternalLink, Github, Calendar } from 'lucide-react';
+import { Github, Calendar } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Projects = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   const projects = [
     {
       title: "ApplyRight",
@@ -28,13 +31,13 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-background">
+    <section ref={ref} id="projects" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-6 scroll-reveal ${isVisible ? 'visible' : ''}`}>
             Featured Projects
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-primary-glow mx-auto mb-8"></div>
+          <div className={`w-24 h-1 bg-gradient-to-r from-primary to-primary-glow mx-auto mb-8 scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '0.2s' }}></div>
         </div>
 
         <div className="max-w-6xl mx-auto">
@@ -44,8 +47,8 @@ const Projects = () => {
                 key={index}
                 className={`gradient-card shadow-card hover-lift transition-smooth group ${
                   project.featured ? 'ring-2 ring-primary/20' : ''
-                } animate-fade-in-up`}
-                style={{ animationDelay: `${index * 0.2}s` }}
+                } scroll-reveal ${isVisible ? 'visible' : ''}`}
+                style={{ transitionDelay: `${0.4 + index * 0.3}s` }}
               >
                 <CardHeader>
                   <div className="flex items-start justify-between">
@@ -82,7 +85,7 @@ const Projects = () => {
                     ))}
                   </div>
 
-                  <div className="flex gap-4 pt-4">
+                   <div className="flex gap-4 pt-4">
                     <Button 
                       variant="outline" 
                       size="sm" 
@@ -94,16 +97,6 @@ const Projects = () => {
                         Code
                       </a>
                     </Button>
-                    <Button 
-                      size="sm" 
-                      className="hover-glow shadow-soft" 
-                      asChild
-                    >
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Demo
-                      </a>
-                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -111,7 +104,7 @@ const Projects = () => {
           </div>
 
           {/* Call to action */}
-          <div className="text-center mt-12 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+          <div className={`text-center mt-12 scroll-reveal ${isVisible ? 'visible' : ''}`} style={{ transitionDelay: '1s' }}>
             <p className="text-muted-foreground mb-6">
               Want to see more of my work?
             </p>
